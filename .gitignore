@@ -1,0 +1,10 @@
+__pycache__/
+desktop.ini
+build/
+dist/
+run.spec
+Square_Calculator(Console).exe
+run.exe
+Square_Calculator.exe
+shape.txt
+test.py
