@@ -26,8 +26,8 @@ def sol(self):
         def add_in_list():
             ety1get = ety1.get()
             ety2get = ety2.get()
-            self.equation = ety1get + "-" + ety2get
-            lstbox.insert("end", ety1get + "=" + ety2get)
+            self.equation = "(" + ety1get + ")" + "-(" + ety2get + ")"
+            lstbox.insert("end", "(" + ety1get + ")" + "=" + "(" + ety2get + ")")
             self.equations.append(self.equation)
         btn = tkinter.Button(add_win, text="add", command=add_in_list)
         btn.grid(row=2, column=0)

@@ -131,7 +131,7 @@ class Square_Calc:
        
     def edge_length_1(self):
         if use_tkinter == False:
-    	    self.shape_e_l_1 = float(input("What is the first edge length(a)"))
+            self.shape_e_l_1 = float(input("What is the first edge length(a)"))
         else:
             root = tkinter.Tk()
             root.title("first edge length(a)")
@@ -148,7 +148,7 @@ class Square_Calc:
     	
     def edge_length_2(self):
         if use_tkinter == False:
-    	    self.shape_e_l_2 = float(input("What is the second edge length(b)"))
+            self.shape_e_l_2 = float(input("What is the second edge length(b)"))
         else:
             root = tkinter.Tk()
             root.title("second edge length(b)")
@@ -165,7 +165,7 @@ class Square_Calc:
     	
     def edge_length_3(self):
         if use_tkinter == False:
-    	    self.shape_e_l_3 = float(input("What is the third edge length(c)"))
+            self.shape_e_l_3 = float(input("What is the third edge length(c)"))
         else:
             root = tkinter.Tk()
             root.title("third edge length(c)")
@@ -1209,80 +1209,86 @@ class Square_Calc:
         return sympy.limit(self.func, self.e2get, self.e3get)
 
     def welcome(self, help_text, ABOUT, HISTORY):
-        if use_tkinter == False:
-            self.type_text = input("Welcome to Square Calculator! Hit [ENTER] to start. PS:Don't know English about shapes? Type help:")
-        else:
-            wel_win = tkinter.Tk()
-            wel_win.title("Welcome to Square Calculator")
-            wel_win.geometry("500x50")
-            wel_win.iconbitmap("S_calc_logo.ico")
-            combo = ttk.Combobox(wel_win)
-            combo['values'] = ("start", "about", "help", "history", "version", "set")
-            combo.current(0)
-            combo.grid(row=0, column=0)
-            def get():
-                self.type_text = combo.get()
-                if self.type_text == 'start':
-                    def start_th():
-                        while True:
-                            self.main()
-                            self.next()
-                    _thread.start_new_thread(start_th, ())
+        try:
+            if use_tkinter == False:
+                self.type_text = input("Welcome to Square Calculator! Hit [ENTER] to start. PS:Don't know English about shapes? Type help:")
+            else:
+                wel_win = tkinter.Tk()
+                wel_win.title("Welcome to Square Calculator")
+                wel_win.geometry("500x50")
+                wel_win.iconbitmap("S_calc_logo.ico")
+                combo = ttk.Combobox(wel_win)
+                combo['values'] = ("start", "about", "help", "history", "version", "set")
+                combo.current(0)
+                combo.grid(row=0, column=0)
+                def get():
+                    self.type_text = combo.get()
+                    if self.type_text == 'start':
+                        def start_th():
+                            try:
+                                while True:
+                                    self.main()
+                                    self.next()
+                            except:
+                                pass
+                        _thread.start_new_thread(start_th, ())
 
-                elif self.type_text =='set':
-                    self.set()
-                   
-                elif self.type_text == 'help':
-                    if use_tkinter == True:
-                        root = tkinter.Tk()
-                        root.title("help")
-                        root.geometry("200x800")
-                        root.iconbitmap("S_calc_logo.ico")
-                        label = tkinter.Label(root, text=help_text)
-                        label.grid(row=0, column=0)
-                        root.mainloop()
-                    else:
-                        print(help_text)
-                elif self.type_text == 'about':
-                    about_win = tkinter.Tk()
-                    about_win.title("about")
-                    about_win.iconbitmap("S_calc_logo.ico")
-                    about_text = ABOUT
-                    about_label = tkinter.Label(about_win, text=about_text)
-                    about_label.grid(row=0, column=0)
-                elif self.type_text == 'history':
-                    history_win = tkinter.Tk()
-                    history_win.title("history")
-                    history_win.iconbitmap("S_calc_logo.ico")
-                    history_text = HISTORY
-                    history_label = tkinter.Label(history_win, text=history_text)
-                    history_label.grid(row=0, column=0)
-                elif self.type_text == 'version':
-                    if use_sympy == True:
-                        math_library_version = "sympy version:" + str(str(sympy.__version__))
-                    else:
-                        import platform
-                        math_library_version = "math version:" + str(str(platform.python_version()))
-                    if use_tkinter == True:
-                        version_str = math_library_version + "\n" + "tk version:" + str(tkinter.TkVersion)
-                    else:
-                        version_str = math_library_version
-                    version_str += "\nSquare Calculator version:" + str(8.15)
-                    version_win = tkinter.Tk()
-                    version_win.title("version")
-                    version_win.geometry("500x100")
-                    version_win.iconbitmap("S_calc_logo.ico")
-                    version_label = tkinter.Label(version_win, text=version_str)
-                    version_label.grid()
-                    version_win.mainloop()  
+                    elif self.type_text =='set':
+                        self.set()
+                    
+                    elif self.type_text == 'help':
+                        if use_tkinter == True:
+                            root = tkinter.Tk()
+                            root.title("help")
+                            root.geometry("200x800")
+                            root.iconbitmap("S_calc_logo.ico")
+                            label = tkinter.Label(root, text=help_text)
+                            label.grid(row=0, column=0)
+                            root.mainloop()
+                        else:
+                            print(help_text)
+                    elif self.type_text == 'about':
+                        about_win = tkinter.Tk()
+                        about_win.title("about")
+                        about_win.iconbitmap("S_calc_logo.ico")
+                        about_text = ABOUT
+                        about_label = tkinter.Label(about_win, text=about_text)
+                        about_label.grid(row=0, column=0)
+                    elif self.type_text == 'history':
+                        history_win = tkinter.Tk()
+                        history_win.title("history")
+                        history_win.iconbitmap("S_calc_logo.ico")
+                        history_text = HISTORY
+                        history_label = tkinter.Label(history_win, text=history_text)
+                        history_label.grid(row=0, column=0)
+                    elif self.type_text == 'version':
+                        if use_sympy == True:
+                            math_library_version = "sympy version:" + str(str(sympy.__version__))
+                        else:
+                            import platform
+                            math_library_version = "math version:" + str(str(platform.python_version()))
+                        if use_tkinter == True:
+                            version_str = math_library_version + "\n" + "tk version:" + str(tkinter.TkVersion)
+                        else:
+                            version_str = math_library_version
+                        version_str += "\nSquare Calculator version:" + str(8.16)
+                        version_win = tkinter.Tk()
+                        version_win.title("version")
+                        version_win.geometry("500x100")
+                        version_win.iconbitmap("S_calc_logo.ico")
+                        version_label = tkinter.Label(version_win, text=version_str)
+                        version_label.grid()
+                        version_win.mainloop()  
 
-            button = tkinter.Button(wel_win, text="submit", command=get)
-            button.grid(row=0, column=1)
-            def close():
-                sys.exit()
-            button1 = tkinter.Button(wel_win, text="close", command=close)
-            button1.grid(row=0, column=2)
-            wel_win.mainloop()
+                button = tkinter.Button(wel_win, text="submit", command=get)
+                button.grid(row=0, column=1)
+                def close():
+                    sys.exit()
+                button1 = tkinter.Button(wel_win, text="close", command=close)
+                button1.grid(row=0, column=2)
+                wel_win.mainloop()
+        except:
+            pass
 
     def exit(self):
         raise SystemExit()
@@ -1355,7 +1361,7 @@ class Square_Calc:
         elif self.to_do == 'arch':
             self.answer = self.arch()
         elif self.to_do == 'triangle(Helen)':
-          	self.answer = self.tri_Helen()
+            self.answer = self.tri_Helen()
         elif self.to_do == 'triangle(1/2absinC)':
             self.answer = self.tri_absinc() 
         elif self.to_do == 'definite_integral' and use_tkinter == True and use_sympy == True:
